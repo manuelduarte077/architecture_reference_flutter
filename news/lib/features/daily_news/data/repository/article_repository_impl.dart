@@ -20,7 +20,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<DataState<List<ArticleModel>>> getNewsArticles() async {
     try {
       final httpResponse = await _newsApiService.getNewsArticles(
-        apiKey: newsAPIKey,
+        apiKey: Environment.apiUrl,
         country: countryQuery,
         category: categoryQuery,
       );

@@ -29,7 +29,10 @@ class ArticleDetailsView extends HookWidget {
         builder: (context) => GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => _onBackButtonTapped(context),
-          child: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
         ),
       ),
     );
@@ -57,9 +60,10 @@ class ArticleDetailsView extends HookWidget {
           Text(
             article!.title!,
             style: const TextStyle(
-                fontFamily: 'Butler',
-                fontSize: 20,
-                fontWeight: FontWeight.w900),
+              fontFamily: 'Butler',
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+            ),
           ),
 
           const SizedBox(height: 14),
@@ -84,7 +88,10 @@ class ArticleDetailsView extends HookWidget {
       width: double.maxFinite,
       height: 250,
       margin: const EdgeInsets.only(top: 14),
-      child: Image.network(article!.urlToImage!, fit: BoxFit.cover),
+      child: Image.network(
+        article!.urlToImage!,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -101,8 +108,12 @@ class ArticleDetailsView extends HookWidget {
   Widget _buildFloatingActionButton() {
     return Builder(
       builder: (context) => FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () => _onFloatingActionButtonPressed(context),
-        child: const Icon(Icons.bookmark, color: Colors.white),
+        child: const Icon(
+          Icons.bookmark,
+          color: Colors.white,
+        ),
       ),
     );
   }

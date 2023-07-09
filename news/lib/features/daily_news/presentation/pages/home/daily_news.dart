@@ -13,16 +13,25 @@ class DailyNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppbar(context),
-      body: _buildBody(),
+      body: CustomScrollView(
+        slivers: [
+          _buildAppbar(context),
+          SliverToBoxAdapter(
+            child: _buildBody(),
+          )
+        ],
+      ),
     );
   }
 
-  _buildAppbar(BuildContext context) {
-    return AppBar(
+  _buildAppbar(context) {
+    return SliverAppBar.medium(
       title: const Text(
         'Daily News',
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 24,
+        ),
       ),
       actions: [
         GestureDetector(
@@ -47,6 +56,8 @@ class DailyNews extends StatelessWidget {
         }
         if (state is RemoteArticlesDone) {
           return ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
             itemBuilder: (context, index) {
               return ArticleWidget(
                 article: state.articles![index],

@@ -6,7 +6,7 @@ import 'package:travel_app/features/trips/domain/repositories/trip_repository.da
 import '../../../../core/error/failures.dart';
 import '../models/trip_model.dart';
 
-class TripRepositoryImpl implements TripRepository{
+class TripRepositoryImpl implements TripRepository {
   final TripLocalDataSource localDataSource;
 
   TripRepositoryImpl(this.localDataSource);
@@ -32,5 +32,4 @@ class TripRepositoryImpl implements TripRepository{
       return Left(SomeSpecificError(error.toString()));
     }
   }
-
 }

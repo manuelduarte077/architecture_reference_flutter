@@ -24,19 +24,19 @@ class AddTripScreen extends ConsumerWidget {
         children: [
           TextFormField(
             controller: _titleController,
-            decoration: InputDecoration(labelText: 'Title'),
+            decoration: const InputDecoration(labelText: 'Title'),
           ),
           TextFormField(
             controller: _descController,
-            decoration: InputDecoration(labelText: 'Description'),
+            decoration: const InputDecoration(labelText: 'Description'),
           ),
           TextFormField(
             controller: _locationController,
-            decoration: InputDecoration(labelText: 'Location'),
+            decoration: const InputDecoration(labelText: 'Location'),
           ),
           TextFormField(
             controller: _pictureController,
-            decoration: InputDecoration(labelText: 'Photo'),
+            decoration: const InputDecoration(labelText: 'Photo'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -54,7 +54,7 @@ class AddTripScreen extends ConsumerWidget {
                 //Navigator.pop(context);
               }
             },
-            child: Text('Add Trip'),
+            child: const Text('Add Trip'),
           ),
         ],
       ),

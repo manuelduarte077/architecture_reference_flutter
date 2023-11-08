@@ -36,7 +36,8 @@ final deleteTripProvider = Provider<DeleteTrip>((ref) {
 });
 
 // This provider will manage fetching trips from the repository.
-final tripListNotifierProvider = StateNotifierProvider<TripListNotifier, List<Trip>>((ref) {
+final tripListNotifierProvider =
+    StateNotifierProvider<TripListNotifier, List<Trip>>((ref) {
   final getTrips = ref.read(getTripsProvider);
   final addTrip = ref.read(addTripProvider);
   final deleteTrip = ref.read(deleteTripProvider);

@@ -8,7 +8,8 @@ class TravelCard extends StatelessWidget {
   final String location;
   final VoidCallback onDelete;
 
-  TravelCard({
+  const TravelCard({
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
@@ -19,20 +20,20 @@ class TravelCard extends StatelessWidget {
 
   void showAlertDialog(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (BuildContext alertContext) {
-          return AlertDialog(
-            title: const Text("Description"),
-            backgroundColor: Theme.of(context).cardColor,
-            content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(description),
-                ]
-            ),
-          );
-        }
+      context: context,
+      builder: (BuildContext alertContext) {
+        return AlertDialog(
+          title: const Text('Description'),
+          backgroundColor: Theme.of(context).cardColor,
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(description),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -52,13 +53,13 @@ class TravelCard extends StatelessWidget {
             Expanded(
               flex: 2,
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   showAlertDialog(context);
                 },
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0)
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
                   ),
                   child: Image.network(
                     imageUrl,
@@ -101,15 +102,17 @@ class TravelCard extends StatelessWidget {
                       children: [
                         Text(
                           location,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           date,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
@@ -139,7 +142,3 @@ class TravelCard extends StatelessWidget {
     );
   }
 }
-
-/*
-
-* */

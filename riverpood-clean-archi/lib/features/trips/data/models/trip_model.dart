@@ -1,4 +1,3 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../domain/entitites/trip.dart';
@@ -36,8 +35,7 @@ class TripModel {
       photos: trip.photos,
       description: trip.description,
       date: trip.date,
-      location: trip.location
-  );
+      location: trip.location);
 
   // Conversion from Model to Entity
   Trip toEntity() => Trip(
@@ -45,7 +43,5 @@ class TripModel {
       photos: photos,
       description: description,
       date: date,
-      location: location
-  );
-
+      location: location);
 }

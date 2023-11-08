@@ -15,8 +15,7 @@ Future<void> main() async {
   Hive.registerAdapter(TripModelAdapter());
   await Hive.openBox<TripModel>('trips');
 
-
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -5,7 +5,7 @@ class DeleteTrip {
 
   DeleteTrip(this.repository);
 
-  Future<void> call(int index){
+  Future<void> call(int index) {
     return repository.deleteTrip(index);
   }
 }

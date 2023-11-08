@@ -6,7 +6,7 @@ class AddTrip {
 
   AddTrip(this.repository);
 
-  Future<void> call(Trip trip){
+  Future<void> call(Trip trip) {
     return repository.addTrip(trip);
   }
 }

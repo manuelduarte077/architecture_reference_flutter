@@ -6,11 +6,15 @@ import '../providers/trip_provider.dart';
 
 class AddTripScreen extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController(text: "City 1");
-  final _descController = TextEditingController(text: "Best city ever");
-  final _locationController = TextEditingController(text: "Paris");
-  final _pictureController = TextEditingController(text: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D');
+  final _titleController = TextEditingController(text: 'City 1');
+  final _descController = TextEditingController(text: 'Best city ever');
+  final _locationController = TextEditingController(text: 'Paris');
+  final _pictureController = TextEditingController(
+      text:
+          'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D');
   List<String> pictures = [];
+
+  AddTripScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

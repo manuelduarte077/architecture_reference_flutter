@@ -121,10 +121,6 @@ class TravelCard extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
                         ),
                         IconButton(
                           icon: Icon(Icons.delete, color: Colors.red[700]),

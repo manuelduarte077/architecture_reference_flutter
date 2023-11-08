@@ -12,7 +12,7 @@ class AddTripScreen extends ConsumerWidget {
   final _pictureController = TextEditingController(
       text:
           'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D');
-  List<String> pictures = [];
+  final List<String> pictures = [];
 
   AddTripScreen({super.key});
 

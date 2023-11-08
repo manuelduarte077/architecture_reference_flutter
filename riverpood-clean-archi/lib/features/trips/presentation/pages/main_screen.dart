@@ -6,16 +6,17 @@ import 'add_trip_screen.dart';
 import 'my_trip_screen.dart';
 
 class MainScreen extends ConsumerWidget {
+  MainScreen({super.key});
+
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPage = ValueNotifier<int>(0);
-  String profilPic =
+  final String profilPic =
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D';
-
-  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(tripListNotifierProvider.notifier).loadTrips();
+
     _pageController.addListener(() {
       _currentPage.value = _pageController.page!.round();
     });
@@ -33,16 +34,18 @@ class MainScreen extends ConsumerWidget {
               'Hi Fabrice 👋',
               textAlign: TextAlign.start,
               style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             Text(
               'Travelling Today ?',
               style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ],
         ),
@@ -64,7 +67,7 @@ class MainScreen extends ConsumerWidget {
       body: PageView(
         controller: _pageController,
         children: [
-          MyTripsScreen(),
+          const MyTripsScreen(),
           AddTripScreen(),
           const Text('Maps'),
         ],

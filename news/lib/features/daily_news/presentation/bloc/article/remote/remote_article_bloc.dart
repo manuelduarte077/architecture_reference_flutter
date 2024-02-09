@@ -1,8 +1,13 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:equatable/equatable.dart';
 import 'package:news_app_clean_architecture/core/resources/data_state.dart';
-import 'package:news_app_clean_architecture/features/daily_news/domain/usecases/get_article.dart';
-import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/remote/remote_article_event.dart';
-import 'package:news_app_clean_architecture/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
+
+import '../../../../domain/entities/article.dart';
+import '../../../../domain/usecases/get_article.dart';
+
+part 'remote_article_event.dart';
+part 'remote_article_state.dart';
 
 class RemoteArticlesBloc
     extends Bloc<RemoteArticlesEvent, RemoteArticlesState> {
@@ -13,16 +18,17 @@ class RemoteArticlesBloc
     on<GetArticles>(onGetArticles);
   }
 
-  void onGetArticles(
+  Future<void> onGetArticles(
       GetArticles event, Emitter<RemoteArticlesState> emit) async {
-    final dataState = await _getArticleUseCase();
+    final dataSet = await _getArticleUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
-      emit(RemoteArticlesDone(dataState.data!));
+    if (dataSet is DataSuccess && dataSet.data!.isNotEmpty) {
+      // print('respponse: ${dataSet.data}');
+      emit(RemoteArticlesDone(dataSet.data!));
     }
 
-    if (dataState is DataFailed) {
-      emit(RemoteArticlesError(dataState.error!));
+    if (dataSet is DataFailed) {
+      emit(RemoteArticlesError(dataSet.error!));
     }
   }
 }

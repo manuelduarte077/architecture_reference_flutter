@@ -1,21 +1,17 @@
-import 'package:equatable/equatable.dart';
-
-import '../../../../domain/entities/article.dart';
+part of 'local_article_bloc.dart';
 
 abstract class LocalArticlesState extends Equatable {
-  final List<ArticleEntity>? articles;
+  final List<ArticleEntity>? article;
 
-  const LocalArticlesState({this.articles});
+  const LocalArticlesState({this.article});
 
   @override
-  List<Object> get props => [articles!];
+  List<Object?> get props => [article];
 }
 
-class LocalArticlesLoading extends LocalArticlesState {
-  const LocalArticlesLoading();
-}
+class LocalArticlesLoading extends LocalArticlesState {}
 
 class LocalArticlesDone extends LocalArticlesState {
   const LocalArticlesDone(List<ArticleEntity> articles)
-      : super(articles: articles);
+      : super(article: articles);
 }

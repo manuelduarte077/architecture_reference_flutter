@@ -40,6 +40,6 @@ Future<void> initializeDependencies() async {
   //Blocs
   sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl()));
 
-  sl.registerFactory<LocalArticleBloc>(
-      () => LocalArticleBloc(sl(), sl(), sl()));
+  sl.registerFactory<LocalArticlesBloc>(
+      () => LocalArticlesBloc(sl(), sl(), sl()));
 }

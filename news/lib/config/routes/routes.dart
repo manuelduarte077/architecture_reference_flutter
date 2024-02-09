@@ -13,10 +13,11 @@ class AppRoutes {
 
       case '/ArticleDetails':
         return _materialRoute(
-            ArticleDetailsView(article: settings.arguments as ArticleEntity));
+          ArticleDetailPage(article: settings.arguments as ArticleEntity),
+        );
 
       case '/SavedArticles':
-        return _materialRoute(const SavedArticles());
+        return _materialRoute(const SavedArticlesPage());
 
       default:
         return _materialRoute(const DailyNews());

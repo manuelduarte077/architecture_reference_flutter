@@ -61,7 +61,7 @@ class _$AppDatabase extends AppDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  ArticleDao? _articleDAOInstance;
+  ArticleDao? _articleDaoInstance;
 
   Future<sqflite.Database> open(
     String path,
@@ -94,8 +94,8 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  ArticleDao get articleDAO {
-    return _articleDAOInstance ??= _$ArticleDao(database, changeListener);
+  ArticleDao get articleDao {
+    return _articleDaoInstance ??= _$ArticleDao(database, changeListener);
   }
 }
 

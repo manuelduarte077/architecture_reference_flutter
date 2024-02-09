@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ionicons/ionicons.dart';
+
 import '../../../../../injection_container.dart';
 import '../../../domain/entities/article.dart';
 import '../../bloc/article/local/local_article_bloc.dart';
-import '../../bloc/article/local/local_article_event.dart';
 
-class ArticleDetailsView extends HookWidget {
+class ArticleDetailPage extends HookWidget {
   final ArticleEntity? article;
 
-  const ArticleDetailsView({super.key, this.article});
+  const ArticleDetailPage({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<LocalArticleBloc>(),
+      create: (_) => sl<LocalArticlesBloc>(),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(),
@@ -25,17 +26,14 @@ class ArticleDetailsView extends HookWidget {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      leading: Builder(
-        builder: (context) => GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => _onBackButtonTapped(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-        ),
-      ),
-    );
+        leading: Builder(
+            builder: (context) => GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => _onBackButtonTapped(context),
+                child: const Icon(
+                  Ionicons.chevron_back,
+                  color: Colors.black,
+                ))));
   }
 
   Widget _buildBody() {
@@ -44,7 +42,7 @@ class ArticleDetailsView extends HookWidget {
         children: [
           _buildArticleTitleAndDate(),
           _buildArticleImage(),
-          _buildArticleDescription(),
+          _buildArticleDescription()
         ],
       ),
     );
@@ -52,32 +50,36 @@ class ArticleDetailsView extends HookWidget {
 
   Widget _buildArticleTitleAndDate() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 22),
+      padding: const EdgeInsets.symmetric(horizontal: 22.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
           Text(
-            article!.title!,
+            article?.title ?? '',
             style: const TextStyle(
-              fontFamily: 'Butler',
-              fontSize: 20,
+              fontFamily: 'Buffer',
+              fontSize: 20.0,
               fontWeight: FontWeight.w900,
             ),
           ),
-
-          const SizedBox(height: 14),
-          // DateTime
+          const SizedBox(
+            height: 14.0,
+          ),
           Row(
             children: [
-              const Icon(Icons.timeline, size: 16),
-              const SizedBox(width: 4),
-              Text(
-                article!.publishedAt!,
-                style: const TextStyle(fontSize: 12),
+              const Icon(
+                Ionicons.time_outline,
+                size: 16.0,
               ),
+              const SizedBox(
+                width: 4.0,
+              ),
+              Text(
+                article?.publishedAt ?? '',
+                style: const TextStyle(fontSize: 12),
+              )
             ],
-          ),
+          )
         ],
       ),
     );
@@ -86,10 +88,10 @@ class ArticleDetailsView extends HookWidget {
   Widget _buildArticleImage() {
     return Container(
       width: double.maxFinite,
-      height: 250,
-      margin: const EdgeInsets.only(top: 14),
+      height: 250.0,
+      margin: const EdgeInsets.only(top: 14.0),
       child: Image.network(
-        article!.urlToImage!,
+        article?.urlToImage ?? '',
         fit: BoxFit.cover,
       ),
     );
@@ -97,38 +99,32 @@ class ArticleDetailsView extends HookWidget {
 
   Widget _buildArticleDescription() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-      child: Text(
-        '${article!.description ?? ''}\n\n${article!.content ?? ''}',
-        style: const TextStyle(fontSize: 16),
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 18.0),
+      child: Text('${article?.description ?? ''}\n\n${article?.content ?? ''}'),
     );
   }
 
   Widget _buildFloatingActionButton() {
     return Builder(
       builder: (context) => FloatingActionButton(
-        backgroundColor: Colors.black,
-        onPressed: () => _onFloatingActionButtonPressed(context),
+        onPressed: () => _onFABPressed(context),
         child: const Icon(
-          Icons.bookmark,
+          Ionicons.bookmark,
           color: Colors.white,
         ),
       ),
     );
   }
 
-  void _onBackButtonTapped(BuildContext context) {
-    Navigator.pop(context);
-  }
+  _onBackButtonTapped(context) => Navigator.pop(context);
 
-  void _onFloatingActionButtonPressed(BuildContext context) {
-    BlocProvider.of<LocalArticleBloc>(context).add(SaveArticle(article!));
+  _onFABPressed(BuildContext context) {
+    BlocProvider.of<LocalArticlesBloc>(context).add(SaveArticle(article!));
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         backgroundColor: Colors.black,
-        content: Text('Article saved successfully.'),
+        content: Text('Article saved successfullly!'),
       ),
     );
   }
